@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd" default-lazy-init="true">
+
+	<bean id="customerService" class="com.inno.model.CustomerService"
+		init-method="initIt" destroy-method="cleanUp"  parent="samplebean" >
+       <constructor-arg index="0" value="100000"></constructor-arg>
+		<property name="message" value="i'm property message" />
+	</bean>
+<bean class="com.inno.Controller.InitBean"  parent="samplebean" />
+<bean id="samplebean" abstract="true">
+<property name="samplevalue" value="data"></property>
+</bean>
+<bean id = "helloWorld" class = "com.inno.model.HelloWorld" scope="prototype">
+      <property name = "message1" value = "Hello World!"/>
+      <property name = "message2" value = "Hello Second World!"/>
+   </bean>
+
+   <bean id =" helloIndia" class = "com.inno.model.HelloIndia" parent = "helloWorld"  scope="singleton">
+      <property name = "message1" value = "Hello India!"/>
+      <property name = "message3" value = "Namaste India!"/>
+   </bean>
+</beans>
